@@ -300,44 +300,6 @@ export default function Home() {
       el.style.transitionDelay = el.dataset.aosDelay + "ms";
     });
 
-    /* ---- Contact form ---- */
-    const contactForm = document.getElementById("contact-form");
-    const btnText = document.getElementById("btn-text");
-    const btnLoader = document.getElementById("btn-loader");
-    const submitBtn = document.getElementById("submit-btn");
-    const formSuccess = document.getElementById("form-success");
-
-    const handleFormSubmit = (e) => {
-      e.preventDefault();
-      const name = document.getElementById("name").value.trim();
-      const email = document.getElementById("email").value.trim();
-      const subject = document.getElementById("subject").value.trim();
-      const message = document.getElementById("message").value.trim();
-
-      if (!name || !email || !subject || !message) return;
-
-      let valid = true;
-      contactForm.querySelectorAll("input, textarea").forEach((input) => {
-        if (!input.value.trim()) valid = false;
-      });
-      if (!valid) { alert("Please fill out all fields before sending."); return; }
-
-      if (btnText) btnText.style.display = "none";
-      if (btnLoader) btnLoader.style.display = "inline-block";
-      if (submitBtn) submitBtn.disabled = true;
-
-      setTimeout(() => {
-        if (btnText) btnText.style.display = "inline-block";
-        if (btnLoader) btnLoader.style.display = "none";
-        if (submitBtn) submitBtn.disabled = false;
-        contactForm.reset();
-        if (formSuccess) formSuccess.style.display = "block";
-        setTimeout(() => { if (formSuccess) formSuccess.style.display = "none"; }, 5000);
-      }, 1500);
-    };
-
-    if (contactForm) contactForm.addEventListener("submit", handleFormSubmit);
-
     /* ---- Smooth scroll for anchor links ---- */
     document.querySelectorAll('a[href^="#"]').forEach((link) => {
       link.addEventListener("click", (e) => {
@@ -388,7 +350,6 @@ export default function Home() {
       if (typedTimeout) clearTimeout(typedTimeout);
       if (cursorRaf) cancelAnimationFrame(cursorRaf);
       if (particlesRaf) cancelAnimationFrame(particlesRaf);
-      if (contactForm) contactForm.removeEventListener("submit", handleFormSubmit);
       observer.disconnect();
       if (barsObserver) barsObserver.disconnect();
       statsObserver.disconnect();

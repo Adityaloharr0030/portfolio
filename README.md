@@ -1,36 +1,52 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Aditya Lohar | Full-Stack Developer Portfolio
 
-## Getting Started
+A modern, high-performance portfolio website built with **Next.js 14** (App Router). This project was migrated from a static HTML/CSS/JS site to a component-based Next.js architecture while preserving all original animations and custom styles.
 
-First, run the development server:
+## 🚀 Features
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+- **Next.js 14 App Router**: Seamless navigation and optimized performance.
+- **Modern Animations**: High-quality interactions using vanilla JavaScript (particles, custom cursor, sequential terminal typing, typed text).
+- **Glassmorphism UI**: Sleek, modern design with custom CSS variables.
+- **EmailJS Integration**: Real-time serverless contact form submissions.
+- **Data-Driven Sections**: Projects and skills managed through React components for easy updates.
+- **Fully Responsive**: Optimized for mobile, tablet, and desktop screens.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🛠️ Tech Stack
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+- **Framework**: Next.js 14
+- **Styling**: Vanilla CSS (globals.css)
+- **UI Icons**: FontAwesome 6
+- **Animations**: Custom Vanilla JS + Intersection Observer (AOS style)
+- **Contact Form**: EmailJS
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 📧 Email Configuration (IMPORTANT)
 
-## Learn More
+The "Get in Touch" form requires **EmailJS** credentials to deliver messages to your inbox. 
 
-To learn more about Next.js, take a look at the following resources:
+To set it up:
+1. Open [`components/Contact.jsx`](./components/Contact.jsx).
+2. Replace the placeholders with your IDs from the [EmailJS Dashboard](https://www.emailjs.com/):
+   ```javascript
+   const EMAILJS_SERVICE_ID = "YOUR_SERVICE_ID";
+   const EMAILJS_TEMPLATE_ID = "YOUR_TEMPLATE_ID";
+   const EMAILJS_PUBLIC_KEY = "YOUR_PUBLIC_KEY";
+   ```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 💻 Local Development
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+1. **Install Dependencies**:
+   ```bash
+   npm install
+   ```
 
-## Deploy on Vercel
+2. **Run Server**:
+   ```bash
+   npm run dev
+   ```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+3. **Visit Site**:
+   Open [http://localhost:3000](http://localhost:3000)
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## 🌐 Deployment
+
+The easiest way to deploy is through [Vercel](https://vercel.com/new). Simply connect your GitHub repository, and it will auto-deploy on every push.
