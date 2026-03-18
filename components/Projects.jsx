@@ -69,7 +69,10 @@ const projects = [
       "Secure identity verification workflow before vote casting",
       "Modern semantic HTML5 & CSS3 layout with clean UX patterns",
     ],
-    techLayers: null,
+    techLayers: [
+      { layer: "Frontend", items: ["HTML5", "CSS3", "JavaScript"] },
+      { layer: "Design", items: ["UI/UX", "Responsive Design", "Accessibility"] },
+    ],
     tech: ["HTML5", "CSS3", "JavaScript", "UI/UX", "Responsive Design"],
     github: "https://github.com/Adityaloharr0030/voting-system",
     live: null,
@@ -83,18 +86,13 @@ export default function Projects() {
       <div className="container">
         <div className="section-header" data-aos="fade-up">
           <span className="section-tag">What I&apos;ve built</span>
-          <h2 className="section-title">Featured <span className="gradient-text">Projects</span></h2>
+          <h2 className="section-title">My <span className="gradient-text">Projects</span></h2>
           <p className="section-sub">From AI-powered editors to enterprise banking — here are some highlights from my portfolio.</p>
         </div>
 
         <div className="projects-grid">
           {projects.map((p, i) => (
             <div className={`project-card${p.featured ? " project-card-featured" : ""}`} key={i} data-aos="fade-up" data-aos-delay={p.delay}>
-              {p.featured && (
-                <div className="featured-badge">
-                  <i className="fa-solid fa-star"></i> Featured
-                </div>
-              )}
 
               <div className="project-card-header">
                 <div className="project-icon"><i className={p.icon}></i></div>
