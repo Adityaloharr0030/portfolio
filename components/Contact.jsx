@@ -8,9 +8,9 @@ export default function Contact() {
   const [isSending, setIsSending] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
 
-  const EMAILJS_SERVICE_ID = "service_nm1ac7a";
-  const EMAILJS_TEMPLATE_ID = "template_oow337g";
-  const EMAILJS_PUBLIC_KEY = "YOUR_PUBLIC_KEY_HERE"; // Need this last one!
+  const EMAILJS_SERVICE_ID = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID;
+  const EMAILJS_TEMPLATE_ID = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID;
+  const EMAILJS_PUBLIC_KEY = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY;
 
   const sendEmail = (e) => {
     e.preventDefault();
@@ -27,8 +27,8 @@ export default function Contact() {
       return;
     }
 
-    if (EMAILJS_PUBLIC_KEY === "YOUR_PUBLIC_KEY_HERE") {
-      alert("Missing Public Key! Please provide it in the chat.");
+    if (!EMAILJS_PUBLIC_KEY) {
+      alert("Missing Public Key in environment variables!");
       return;
     }
 
