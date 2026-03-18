@@ -8,16 +8,9 @@ export default function Contact() {
   const [isSending, setIsSending] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
 
-  /* 
-    SETTINGS (Replace these with your EmailJS credentials):
-    1. Sign up at https://www.emailjs.com/
-    2. Add your Email Service (e.g., Gmail)
-    3. Create an Email Template
-    4. Copy your IDs here
-  */
-  const EMAILJS_SERVICE_ID = "YOUR_SERVICE_ID";
-  const EMAILJS_TEMPLATE_ID = "YOUR_TEMPLATE_ID";
-  const EMAILJS_PUBLIC_KEY = "YOUR_PUBLIC_KEY";
+  const EMAILJS_SERVICE_ID = "service_nm1ac7a";
+  const EMAILJS_TEMPLATE_ID = "template_oow337g";
+  const EMAILJS_PUBLIC_KEY = "YOUR_PUBLIC_KEY_HERE"; // Need this last one!
 
   const sendEmail = (e) => {
     e.preventDefault();
@@ -31,6 +24,11 @@ export default function Contact() {
 
     if (!name || !email || !subject || !message) {
       alert("Please fill out all fields.");
+      return;
+    }
+
+    if (EMAILJS_PUBLIC_KEY === "YOUR_PUBLIC_KEY_HERE") {
+      alert("Missing Public Key! Please provide it in the chat.");
       return;
     }
 
@@ -57,7 +55,6 @@ export default function Contact() {
         }
       );
   };
-
   return (
     <section id="contact" className="section section-alt">
       <div className="container">
