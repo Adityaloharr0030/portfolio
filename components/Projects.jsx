@@ -54,28 +54,6 @@ const projects = [
     delay: 100,
   },
   {
-    icon: "fa-solid fa-boxes-stacked",
-    title: "Inventory Management API",
-    subtitle: "RESTful Backend Service",
-    role: "Backend Developer",
-    roleAlt: true,
-    featured: false,
-    category: "REST API",
-    description:
-      "A production-ready RESTful backend service for structured inventory management. Built with JWT authentication, full CRUD operations, and a well-normalised MySQL schema — thoroughly documented and tested via Postman.",
-    highlights: [
-      "JWT-based secure authentication & authorization system",
-      "Fully normalised MySQL relational schema design",
-      "Complete CRUD endpoints with comprehensive Postman documentation",
-      "Production-ready error handling & input validation patterns",
-    ],
-    techLayers: null,
-    tech: ["Node.js", "Express.js", "MySQL", "JWT Auth", "REST API", "Postman"],
-    github: "https://github.com/Adityaloharr0030",
-    live: null,
-    delay: 120,
-  },
-  {
     icon: "fa-solid fa-check-to-slot",
     title: "Digital Voting System",
     subtitle: "Secure Web Voting Platform",
