@@ -825,15 +825,9 @@ button { cursor: pointer; border: none; background: none; }
 
 /* Featured Card Styling */
 .project-card-featured {
-  grid-column: 1 / -1; /* Spans full width */
   background: linear-gradient(145deg, rgba(255,255,255,0.06) 0%, rgba(255,255,255,0.02) 100%);
   border: 1px solid rgba(108,99,255,0.3);
   box-shadow: 0 10px 40px rgba(0,0,0,0.6), inset 0 0 0 1px rgba(255,255,255,0.05);
-}
-@media (min-width: 1024px) {
-  .project-card-featured {
-    padding: 40px 48px;
-  }
 }
 .featured-badge {
   position: absolute;
