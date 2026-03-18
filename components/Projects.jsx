@@ -96,121 +96,68 @@ export default function Projects() {
                 </div>
               )}
 
-              {p.featured ? (
-                // --- FEATURED LAYOUT (Split into two columns on desktop) ---
-                <div className="featured-layout-inner">
-                  
-                  {/* Left Column: Core Info */}
-                  <div className="featured-main-content">
-                    <div className="project-card-header">
-                      <div className="project-icon"><i className={p.icon}></i></div>
-                      <span className="project-category desktop-hidden">{p.category}</span>
-                    </div>
-
-                    <h3 className="project-title">{p.title}</h3>
-                    <p className="project-subtitle">{p.subtitle}</p>
-                    <p className="project-role">
-                      <span className={`role-badge${p.roleAlt ? " role-badge-alt" : ""}`}>{p.role}</span>
-                    </p>
-                    <p className="project-description">{p.description}</p>
-
-                    <div className="project-highlights">
-                      {p.highlights.map((h, j) => (
-                        <div className="highlight-item" key={j}>
-                          <i className="fa-solid fa-circle-check"></i>
-                          <span>{h}</span>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-
-                  {/* Right Column: Tech & Links */}
-                  <div className="featured-sidebar">
-                    <div className="featured-sidebar-top">
-                      <span className="project-category mobile-hidden">{p.category}</span>
-                      <div className="project-links">
-                        <a href={p.github} target="_blank" rel="noopener" className="p-link" title="View Source Code">
-                          <i className="fa-brands fa-github"></i>
-                        </a>
-                        {p.live && (
-                          <a href={p.live} target="_blank" rel="noopener" className="p-link p-link-live" title="Live Demo">
-                            <i className="fa-solid fa-arrow-up-right-from-square"></i>
-                          </a>
-                        )}
-                      </div>
-                    </div>
-
-                    <div className="featured-tech-container">
-                      {p.techLayers && (
-                        <div className="project-tech-layers">
-                          <span className="layer-title">Architecture</span>
-                          {p.techLayers.map((tl, k) => (
-                            <div className="tech-layer-row" key={k}>
-                              <span className="tech-layer-label">{tl.layer}</span>
-                              <div className="tech-layer-items">
-                                {tl.items.map((item, m) => (
-                                  <span className="tech-tag tech-tag-accent" key={m}>{item}</span>
-                                ))}
-                              </div>
-                            </div>
-                          ))}
-                        </div>
-                      )}
-                    </div>
+              <div className="project-card-header">
+                <div className="project-icon"><i className={p.icon}></i></div>
+                <div className="project-header-right">
+                  <span className="project-category">{p.category}</span>
+                  <div className="project-links">
+                    <a href={p.github} target="_blank" rel="noopener" className="p-link" title="View Source Code">
+                      <i className="fa-brands fa-github"></i>
+                    </a>
+                    {p.live && (
+                      <a href={p.live} target="_blank" rel="noopener" className="p-link p-link-live" title="Live Demo">
+                        <i className="fa-solid fa-arrow-up-right-from-square"></i>
+                      </a>
+                    )}
                   </div>
                 </div>
-              ) : (
-                // --- REGULAR LAYOUT (Vertical) ---
-                <>
-                  <div className="project-card-header">
-                    <div className="project-icon"><i className={p.icon}></i></div>
-                    <div className="project-header-right">
-                      <span className="project-category">{p.category}</span>
-                      <div className="project-links">
-                        <a href={p.github} target="_blank" rel="noopener" className="p-link" title="View Source Code">
-                          <i className="fa-brands fa-github"></i>
-                        </a>
-                        {p.live && (
-                          <a href={p.live} target="_blank" rel="noopener" className="p-link p-link-live" title="Live Demo">
-                            <i className="fa-solid fa-arrow-up-right-from-square"></i>
-                          </a>
-                        )}
+              </div>
+
+              <h3 className="project-title">{p.title}</h3>
+              <p className="project-subtitle">{p.subtitle}</p>
+              <p className="project-role">
+                <span className={`role-badge${p.roleAlt ? " role-badge-alt" : ""}`}>{p.role}</span>
+              </p>
+              <p className="project-description">{p.description}</p>
+
+              <div className="project-highlights">
+                {p.highlights.map((h, j) => (
+                  <div className="highlight-item" key={j}>
+                    <i className="fa-solid fa-circle-check"></i>
+                    <span>{h}</span>
+                  </div>
+                ))}
+              </div>
+
+              {p.techLayers && (
+                <div className="project-tech-layers">
+                  {p.techLayers.map((tl, k) => (
+                    <div className="tech-layer-row" key={k}>
+                      <span className="tech-layer-label">{tl.layer}</span>
+                      <div className="tech-layer-items">
+                        {tl.items.map((item, m) => (
+                          <span className="tech-tag tech-tag-accent" key={m}>{item}</span>
+                        ))}
                       </div>
                     </div>
-                  </div>
-
-                  <h3 className="project-title">{p.title}</h3>
-                  <p className="project-subtitle">{p.subtitle}</p>
-                  <p className="project-role">
-                    <span className={`role-badge${p.roleAlt ? " role-badge-alt" : ""}`}>{p.role}</span>
-                  </p>
-                  <p className="project-description">{p.description}</p>
-
-                  <div className="project-highlights">
-                    {p.highlights.map((h, j) => (
-                      <div className="highlight-item" key={j}>
-                        <i className="fa-solid fa-circle-check"></i>
-                        <span>{h}</span>
-                      </div>
-                    ))}
-                  </div>
-
-                  {!p.techLayers && (
-                    <div className="project-tech-stack">
-                      {p.tech.map((t, j) => (
-                        <span className="tech-tag" key={j}>{t}</span>
-                      ))}
-                    </div>
-                  )}
-
-                  <div className="project-card-footer">
-                    <a href={p.github} target="_blank" rel="noopener" className="project-view-btn">
-                      <span>View on GitHub</span>
-                      <i className="fa-solid fa-arrow-right"></i>
-                    </a>
-                  </div>
-                </>
+                  ))}
+                </div>
               )}
+
+              {!p.techLayers && (
+                <div className="project-tech-stack">
+                  {p.tech.map((t, j) => (
+                    <span className="tech-tag" key={j}>{t}</span>
+                  ))}
+                </div>
+              )}
+
+              <div className="project-card-footer">
+                <a href={p.github} target="_blank" rel="noopener" className="project-view-btn">
+                  <span>View on GitHub</span>
+                  <i className="fa-solid fa-arrow-right"></i>
+                </a>
+              </div>
             </div>
           ))}
         </div>

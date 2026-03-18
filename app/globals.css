@@ -851,60 +851,6 @@ button { cursor: pointer; border: none; background: none; }
   z-index: 10;
 }
 
-/* Featured One-Column Layout (All in 1 frame) */
-.featured-layout-inner {
-  display: flex;
-  flex-direction: column;
-  gap: 32px;
-}
-@media (min-width: 1024px) {
-  .featured-layout-inner {
-    gap: 40px;
-  }
-}
-.featured-main-content {
-  display: flex;
-  flex-direction: column;
-}
-.featured-sidebar {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-}
-@media (min-width: 1024px) {
-  .featured-sidebar {
-    border-top: 1px solid rgba(255,255,255,0.08);
-    padding-top: 32px;
-  }
-}
-
-.featured-sidebar-top {
-  display: flex;
-  justify-content: flex-end; /* Just links on the right */
-  align-items: center;
-  margin-bottom: 24px;
-}
-.layer-title {
-  display: block;
-  font-size: 0.85rem;
-  font-weight: 800;
-  text-transform: uppercase;
-  letter-spacing: 1.5px;
-  color: var(--text-primary);
-  margin-bottom: 16px;
-  padding-bottom: 10px;
-  border-bottom: 1px dashed rgba(255,255,255,0.1);
-}
-
-.desktop-hidden { display: none; }
-@media (max-width: 1023px) {
-  .desktop-hidden { display: inline-block; }
-  .mobile-hidden { display: none; }
-  .featured-sidebar-top { 
-    margin-top: 16px; 
-    margin-bottom: 16px; 
-  }
-}
 
 .project-card-header {
   display: flex; justify-content: space-between; align-items: flex-start;
