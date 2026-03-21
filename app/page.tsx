@@ -364,10 +364,6 @@ export default function Home() {
       {/* Scroll Progress */}
       <div id="scroll-progress"></div>
 
-      {/* Custom Cursor */}
-      <div id="cursor"></div>
-      <div id="cursor-follower"></div>
-
       {/* Particles Canvas */}
       <canvas id="particles-canvas"></canvas>
 

@@ -1,3 +1,7 @@
+"use client";
+
+import { useState } from "react";
+
 const projects = [
   {
     icon: "fa-solid fa-code",
@@ -81,6 +85,13 @@ const projects = [
 ];
 
 export default function Projects() {
+  const [filter, setFilter] = useState("All");
+  const categories = ["All", ...Array.from(new Set(projects.map(p => p.category)))];
+
+  const filteredProjects = filter === "All" 
+    ? projects 
+    : projects.filter(p => p.category === filter);
+
   return (
     <section id="projects" className="section">
       <div className="container">
@@ -90,9 +101,22 @@ export default function Projects() {
           <p className="section-sub">From AI-powered editors to enterprise banking — here are some highlights from my portfolio.</p>
         </div>
 
+        <div className="project-filters" style={{ display: 'flex', justifyContent: 'center', gap: '12px', marginBottom: '48px', flexWrap: 'wrap' }} data-aos="fade-up">
+           {categories.map(cat => (
+             <button 
+               key={cat} 
+               onClick={() => setFilter(cat)}
+               className={`btn ${filter === cat ? 'btn-primary' : 'btn-outline'}`}
+               style={{ padding: '8px 20px', fontSize: '0.9rem' }}
+             >
+               {cat}
+             </button>
+           ))}
+        </div>
+
         <div className="projects-grid">
-          {projects.map((p, i) => (
-            <div className={`project-card${p.featured ? " project-card-featured" : ""}`} key={i} data-aos="fade-up" data-aos-delay={p.delay}>
+          {filteredProjects.map((p, i) => (
+            <div className={`project-card${p.featured ? " project-card-featured" : ""}`} key={`${p.title}-${i}`} data-aos="fade-up" data-aos-delay={p.delay}>
 
               <div className="project-card-header">
                 <div className="project-icon"><i className={p.icon}></i></div>

@@ -48,10 +48,17 @@ export default function Contact() {
     setIsSending(true);
 
     emailjs
-      .sendForm(
+      .send(
         EMAILJS_SERVICE_ID,
         EMAILJS_TEMPLATE_ID,
-        form.current!
+        {
+          name,
+          email,
+          subject,
+          message,
+          time: new Date().toLocaleString(),
+        },
+        EMAILJS_PUBLIC_KEY
       )
       .then(
         () => {

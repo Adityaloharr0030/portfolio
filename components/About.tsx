@@ -1,3 +1,5 @@
+import GitHubStats from "./GitHubStats";
+
 export default function About() {
   return (
     <section id="about" className="section">
@@ -38,6 +40,8 @@ export default function About() {
               <span className="stat-label">Technologies</span>
             </div>
           </div>
+
+          <GitHubStats />
 
           <div className="about-details-row" data-aos="fade-up" data-aos-delay="200">
             {/* Education timeline */}

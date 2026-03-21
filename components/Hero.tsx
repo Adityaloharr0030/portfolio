@@ -1,6 +1,10 @@
+import dynamic from "next/dynamic";
+const Hero3D = dynamic(() => import("./Hero3D"), { ssr: false });
+
 export default function Hero() {
   return (
     <section id="home" className="hero">
+      <Hero3D />
       <div className="hero-content">
         <div className="hero-text" data-aos="fade-right">
           <p className="hero-greeting">👋 Hello, I&apos;m</p>

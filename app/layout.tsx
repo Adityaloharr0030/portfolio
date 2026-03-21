@@ -1,7 +1,23 @@
+import { Inter, Fira_Code } from "next/font/google";
 import "./globals.css";
 import WebVitals from "@/components/WebVitals";
+import { ThemeProvider } from "@/components/ThemeProvider";
+import MagicCursor from "@/components/MagicCursor";
+
+const inter = Inter({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-inter",
+});
+
+const firaCode = Fira_Code({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-fira-code",
+});
 
 export const metadata = {
+  metadataBase: new URL("https://portfolio.adityalohar.com"),
   title: "Aditya Lohar | Full-Stack Developer",
   description:
     "Aditya Sunil Lohar – B.Tech Computer Engineering Student & Full-Stack Web Developer from Jalgaon, Maharashtra. Specialising in React, Next.js, Node.js and MongoDB.",
@@ -10,31 +26,26 @@ export const metadata = {
   },
 };
 
-export default function RootLayout({ children }) {
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <head>
-        {/* Google Fonts */}
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Fira+Code:wght@400;500&display=swap"
-          rel="stylesheet"
-        />
         {/* Font Awesome */}
         <link
           rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
         />
-        {/* EmailJS */}
-        <script
-          src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"
-          defer
-        ></script>
       </head>
-      <body>
-        <WebVitals />
-        {children}
+      <body className={`${inter.variable} ${firaCode.variable} ${inter.className}`}>
+        <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
+          <MagicCursor />
+          <WebVitals />
+          {children}
+        </ThemeProvider>
       </body>
     </html>
   );
