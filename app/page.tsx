@@ -101,7 +101,7 @@ export default function Home() {
       };
       document.addEventListener("mousemove", onMouseMove);
 
-      function animateCursor() {
+      const animateCursor = () => {
         fx += (mx - fx) * 0.12;
         fy += (my - fy) * 0.12;
         cursorFollower.style.left = fx + "px";
@@ -125,18 +125,19 @@ export default function Home() {
     }
 
     /* ---- Particles Canvas ---- */
-    const canvas = document.getElementById("particles-canvas");
-    let particlesRaf;
+    const canvas = document.getElementById("particles-canvas") as HTMLCanvasElement | null;
+    let particlesRaf: number;
     if (canvas) {
       const ctx = canvas.getContext("2d");
-      let W, H, particles;
+      let W: number, H: number, particles: Particle[];
 
-      function resize() {
+      const resize = () => {
         W = canvas.width = window.innerWidth;
         H = canvas.height = window.innerHeight;
-      }
+      };
 
       class Particle {
+        x!: number; y!: number; r!: number; vx!: number; vy!: number; alpha!: number; color!: string;
         constructor() { this.reset(true); }
         reset(init) {
           this.x = Math.random() * W;
@@ -166,8 +167,8 @@ export default function Home() {
       resize();
       particles = Array.from({ length: 80 }, () => new Particle());
 
-      function loop() {
-        ctx.clearRect(0, 0, W, H);
+      const loop = () => {
+        ctx!.clearRect(0, 0, W, H);
         particles.forEach((p) => { p.update(); p.draw(); });
         particlesRaf = requestAnimationFrame(loop);
       }
@@ -189,7 +190,7 @@ export default function Home() {
       ];
       let rIdx = 0, cIdx = 0, deleting = false;
 
-      function tick() {
+      const tick = () => {
         const word = roles[rIdx];
         if (!deleting) {
           typedEl.textContent = word.slice(0, ++cIdx);
@@ -221,10 +222,12 @@ export default function Home() {
 
       let current = "";
       sections.forEach((sec) => {
-        if (window.scrollY >= sec.offsetTop - 120) current = sec.getAttribute("id");
+        const el = sec as HTMLElement;
+        if (window.scrollY >= el.offsetTop - 120) current = el.getAttribute("id") || "";
       });
       navLinks.forEach((link) => {
-        link.classList.toggle("active", link.dataset.section === current);
+        const el = link as HTMLElement;
+        el.classList.toggle("active", el.dataset.section === current);
       });
 
       if (backTopBtn) backTopBtn.classList.toggle("visible", window.scrollY > 400);
@@ -261,7 +264,7 @@ export default function Home() {
           if (entry.isIntersecting) {
             entry.target.classList.add("aos-animate");
             entry.target.querySelectorAll &&
-              entry.target.querySelectorAll(".skill-bar-fill").forEach((bar) => {
+              entry.target.querySelectorAll(".skill-bar-fill").forEach((bar: any) => {
                 bar.style.width = bar.dataset.width + "%";
               });
             observer.unobserve(entry.target);
@@ -281,7 +284,7 @@ export default function Home() {
         (entries) => {
           entries.forEach((entry) => {
             if (entry.isIntersecting) {
-              entry.target.querySelectorAll(".skill-bar-fill").forEach((bar, i) => {
+              entry.target.querySelectorAll(".skill-bar-fill").forEach((bar: any, i) => {
                 setTimeout(() => {
                   bar.style.width = bar.dataset.width + "%";
                 }, i * 120);
@@ -296,7 +299,7 @@ export default function Home() {
     }
 
     /* ---- AOS delay ---- */
-    document.querySelectorAll("[data-aos-delay]").forEach((el) => {
+    document.querySelectorAll("[data-aos-delay]").forEach((el: any) => {
       el.style.transitionDelay = el.dataset.aosDelay + "ms";
     });
 

@@ -118,30 +118,6 @@ export default function Projects() {
               </p>
               <p className="project-description">{p.description}</p>
 
-              <div className="project-highlights">
-                {p.highlights.map((h, j) => (
-                  <div className="highlight-item" key={j}>
-                    <i className="fa-solid fa-circle-check"></i>
-                    <span>{h}</span>
-                  </div>
-                ))}
-              </div>
-
-              {p.techLayers && (
-                <div className="project-tech-layers">
-                  {p.techLayers.map((tl, k) => (
-                    <div className="tech-layer-row" key={k}>
-                      <span className="tech-layer-label">{tl.layer}</span>
-                      <div className="tech-layer-items">
-                        {tl.items.map((item, m) => (
-                          <span className="tech-tag tech-tag-accent" key={m}>{item}</span>
-                        ))}
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              )}
-
               {!p.techLayers && (
                 <div className="project-tech-stack">
                   {p.tech.map((t, j) => (

@@ -1,4 +1,5 @@
 import "./globals.css";
+import WebVitals from "@/components/WebVitals";
 
 export const metadata = {
   title: "Aditya Lohar | Full-Stack Developer",
@@ -31,7 +32,10 @@ export default function RootLayout({ children }) {
           defer
         ></script>
       </head>
-      <body>{children}</body>
+      <body>
+        <WebVitals />
+        {children}
+      </body>
     </html>
   );
 }

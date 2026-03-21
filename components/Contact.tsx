@@ -1,10 +1,10 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import emailjs from "@emailjs/browser";
 
 export default function Contact() {
-  const form = useRef();
+  const form = useRef<HTMLFormElement>(null);
   const [isSending, setIsSending] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
 
@@ -12,23 +12,36 @@ export default function Contact() {
   const EMAILJS_TEMPLATE_ID = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID;
   const EMAILJS_PUBLIC_KEY = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY;
 
-  const sendEmail = (e) => {
+  // Initialize EmailJS once on component mount
+  useEffect(() => {
+    if (EMAILJS_PUBLIC_KEY) {
+      emailjs.init(EMAILJS_PUBLIC_KEY);
+    }
+  }, [EMAILJS_PUBLIC_KEY]);
+
+  const sendEmail = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    // Basic internal validation
-    const formData = new FormData(form.current);
-    const name = formData.get("name")?.trim();
-    const email = formData.get("email")?.trim();
-    const subject = formData.get("subject")?.trim();
-    const message = formData.get("message")?.trim();
-
-    if (!name || !email || !subject || !message) {
-      alert("Please fill out all fields.");
+    // Validate environment variables
+    if (!EMAILJS_SERVICE_ID || !EMAILJS_TEMPLATE_ID || !EMAILJS_PUBLIC_KEY) {
+      console.error("Missing EmailJS configuration:", {
+        serviceId: !EMAILJS_SERVICE_ID,
+        templateId: !EMAILJS_TEMPLATE_ID,
+        publicKey: !EMAILJS_PUBLIC_KEY,
+      });
+      alert("Configuration error. Please check your environment variables.");
       return;
     }
 
-    if (!EMAILJS_PUBLIC_KEY) {
-      alert("Missing Public Key in environment variables!");
+    // Basic internal validation
+    const formData = new FormData(form.current!);
+    const name = (formData.get("name") as string)?.trim();
+    const email = (formData.get("email") as string)?.trim();
+    const subject = (formData.get("subject") as string)?.trim();
+    const message = (formData.get("message") as string)?.trim();
+
+    if (!name || !email || !subject || !message) {
+      alert("Please fill out all fields.");
       return;
     }
 
@@ -38,20 +51,19 @@ export default function Contact() {
       .sendForm(
         EMAILJS_SERVICE_ID,
         EMAILJS_TEMPLATE_ID,
-        form.current,
-        EMAILJS_PUBLIC_KEY
+        form.current!
       )
       .then(
         () => {
           setIsSending(false);
           setIsSuccess(true);
-          form.current.reset();
+          form.current!.reset();
           setTimeout(() => setIsSuccess(false), 5000);
         },
         (error) => {
           setIsSending(false);
           console.error("EmailJS Error:", error);
-          alert("Oops! Something went wrong. Please check your credentials or try again.");
+          alert(`Failed to send message. Error: ${error?.message || "Unknown error"}`);
         }
       );
   };
@@ -91,7 +103,7 @@ export default function Contact() {
             </a>
 
             <a
-              href="https://linkedin.com/in/aditya-lohar"
+              href="https://www.linkedin.com/in/aditya-lohar-3037b32b9"
               target="_blank"
               rel="noopener"
               className="contact-card"
@@ -103,7 +115,7 @@ export default function Contact() {
               <div className="contact-card-info">
                 <span className="contact-card-label">Connect on</span>
                 <span className="contact-card-value">
-                  linkedin.com/in/aditya-lohar
+                  linkedin.com/in/aditya-lohar-3037b32b9
                 </span>
               </div>
               <i className="fa-solid fa-arrow-right contact-card-arrow"></i>
@@ -184,12 +196,19 @@ export default function Contact() {
                   <textarea
                     id="message"
                     name="message"
-                    rows="5"
+                    rows={5}
                     placeholder="Hi Aditya, I'd love to discuss..."
                     required
                   ></textarea>
                 </div>
               </div>
+              
+              {/* Hidden field for timestamp */}
+              <input 
+                type="hidden" 
+                name="time" 
+                value={new Date().toLocaleString()}
+              />
               <button
                 type="submit"
                 className="btn btn-primary btn-full"

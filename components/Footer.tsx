@@ -14,7 +14,7 @@ export default function Footer() {
             <a href="https://github.com/Adityaloharr0030" target="_blank" rel="noopener" aria-label="GitHub">
               <i className="fa-brands fa-github"></i>
             </a>
-            <a href="https://linkedin.com/in/aditya-lohar" target="_blank" rel="noopener" aria-label="LinkedIn">
+            <a href="https://www.linkedin.com/in/aditya-lohar-3037b32b9" target="_blank" rel="noopener" aria-label="LinkedIn">
               <i className="fa-brands fa-linkedin"></i>
             </a>
             <a href="mailto:lohar6987@gmail.com" aria-label="Email">

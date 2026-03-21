@@ -1,0 +1,79 @@
+/* ---------- Skills ---------- */
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 20px;
+  margin-bottom: 48px;
+}
+.skill-category {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 24px 20px;
+  transition: var(--trans);
+}
+.skill-category:hover {
+  border-color: var(--border-hover);
+  background: var(--bg-card-hover);
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-card);
+}
+.skill-cat-icon {
+  width: 44px; height: 44px;
+  background: rgba(108,99,255,0.12);
+  border-radius: 12px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.2rem; color: var(--accent);
+  margin-bottom: 14px;
+}
+.skill-cat-title {
+  font-size: 0.9rem; font-weight: 700;
+  margin-bottom: 14px; color: var(--text-primary);
+}
+.skill-pills { display: flex; flex-wrap: wrap; gap: 8px; }
+.skill-pill {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid var(--border);
+  border-radius: 50px;
+  padding: 4px 12px;
+  font-size: 0.78rem; font-weight: 500;
+  color: var(--text-secondary);
+  display: flex; align-items: center; gap: 5px;
+  transition: var(--trans);
+}
+.skill-pill:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+/* Skill bars */
+.skills-bars {
+  max-width: 700px; margin: 0 auto;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 32px 36px;
+}
+.skills-bars-title {
+  font-size: 1.1rem; font-weight: 700;
+  margin-bottom: 24px;
+}
+.skill-bar-item { margin-bottom: 20px; }
+.skill-bar-item:last-child { margin-bottom: 0; }
+.skill-bar-label {
+  display: flex; justify-content: space-between;
+  font-size: 0.88rem; font-weight: 600;
+  margin-bottom: 8px;
+  color: var(--text-secondary);
+}
+.skill-bar-track {
+  height: 8px;
+  background: rgba(255,255,255,0.06);
+  border-radius: 50px; overflow: hidden;
+}
+.skill-bar-fill {
+  height: 100%; width: 0;
+  background: var(--accent-grad);
+  border-radius: 50px;
+  transition: width 1.2s cubic-bezier(0.4,0,0.2,1);
+}

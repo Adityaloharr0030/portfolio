@@ -29,7 +29,7 @@ export default function Hero() {
             <a href="https://github.com/Adityaloharr0030" target="_blank" rel="noopener" className="social-icon" aria-label="GitHub">
               <i className="fa-brands fa-github"></i>
             </a>
-            <a href="https://linkedin.com/in/aditya-lohar" target="_blank" rel="noopener" className="social-icon" aria-label="LinkedIn">
+            <a href="https://www.linkedin.com/in/aditya-lohar-3037b32b9" target="_blank" rel="noopener" className="social-icon" aria-label="LinkedIn">
               <i className="fa-brands fa-linkedin"></i>
             </a>
             <a href="mailto:adityalohar00030@gmail.com" className="social-icon" aria-label="Email">

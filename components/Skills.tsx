@@ -62,6 +62,8 @@ const bars = [
   { label: "Git / GitHub", width: 80 },
 ];
 
+import styles from "./Skills.module.css";
+
 export default function Skills() {
   return (
     <section id="skills" className="section section-alt">
@@ -71,14 +73,14 @@ export default function Skills() {
           <h2 className="section-title">Technical <span className="gradient-text">Skills</span></h2>
         </div>
 
-        <div className="skills-grid">
+        <div className={styles["skills-grid"]}>
           {categories.map((cat, i) => (
-            <div className="skill-category" key={i} data-aos="fade-up" data-aos-delay={cat.delay}>
-              <div className="skill-cat-icon"><i className={cat.icon}></i></div>
-              <h3 className="skill-cat-title">{cat.title}</h3>
-              <div className="skill-pills">
+            <div className={styles["skill-category"]} key={i} data-aos="fade-up" data-aos-delay={cat.delay}>
+              <div className={styles["skill-cat-icon"]}><i className={cat.icon}></i></div>
+              <h3 className={styles["skill-cat-title"]}>{cat.title}</h3>
+              <div className={styles["skill-pills"]}>
                 {cat.pills.map((pill, j) => (
-                  <span className="skill-pill" key={j}>
+                  <span className={styles["skill-pill"]} key={j}>
                     {pill.icon ? <i className={pill.icon}></i> : pill.emoji} {pill.label}
                   </span>
                 ))}
@@ -88,13 +90,13 @@ export default function Skills() {
         </div>
 
         {/* Progress bars */}
-        <div className="skills-bars" data-aos="fade-up">
-          <h3 className="skills-bars-title">Proficiency</h3>
+        <div className={styles["skills-bars"]} data-aos="fade-up">
+          <h3 className={styles["skills-bars-title"]}>Proficiency</h3>
           {bars.map((bar, i) => (
-            <div className="skill-bar-item" key={i}>
-              <div className="skill-bar-label"><span>{bar.label}</span><span>{bar.width}%</span></div>
-              <div className="skill-bar-track">
-                <div className="skill-bar-fill" data-width={bar.width}></div>
+            <div className={styles["skill-bar-item"]} key={i}>
+              <div className={styles["skill-bar-label"]}><span>{bar.label}</span><span>{bar.width}%</span></div>
+              <div className={styles["skill-bar-track"]}>
+                <div className={styles["skill-bar-fill"]} data-width={bar.width}></div>
               </div>
             </div>
           ))}
