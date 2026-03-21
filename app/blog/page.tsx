@@ -43,8 +43,6 @@ export default function BlogIndex() {
               <div 
                 className="project-card" 
                 style={{ padding: "30px", border: "1px solid var(--border)", borderRadius: "var(--radius-lg)", background: "var(--bg-card)", transition: "var(--trans)", cursor: "pointer" }}
-                onMouseOver={(e) => (e.currentTarget.style.borderColor = "var(--border-hover)")}
-                onMouseOut={(e) => (e.currentTarget.style.borderColor = "var(--border)")}
               >
                 <div style={{ display: "flex", gap: "10px", alignItems: "center", marginBottom: "12px", fontSize: "0.85rem", color: "var(--text-muted)" }}>
                   <span>{post.date}</span>
