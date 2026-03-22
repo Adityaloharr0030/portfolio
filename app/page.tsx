@@ -264,7 +264,7 @@ export default function Home() {
           if (entry.isIntersecting) {
             entry.target.classList.add("aos-animate");
             entry.target.querySelectorAll &&
-              entry.target.querySelectorAll(".skill-bar-fill").forEach((bar: any) => {
+              entry.target.querySelectorAll(".js-skill-bar-fill").forEach((bar: any) => {
                 bar.style.width = bar.dataset.width + "%";
               });
             observer.unobserve(entry.target);
@@ -277,14 +277,14 @@ export default function Home() {
     document.querySelectorAll("[data-aos]").forEach((el) => observer.observe(el));
 
     /* Observe skills bars */
-    const skillsSection = document.querySelector(".skills-bars");
+    const skillsSection = document.querySelector(".js-skills-bars");
     let barsObserver;
     if (skillsSection) {
       barsObserver = new IntersectionObserver(
         (entries) => {
           entries.forEach((entry) => {
             if (entry.isIntersecting) {
-              entry.target.querySelectorAll(".skill-bar-fill").forEach((bar: any, i) => {
+              entry.target.querySelectorAll(".js-skill-bar-fill").forEach((bar: any, i) => {
                 setTimeout(() => {
                   bar.style.width = bar.dataset.width + "%";
                 }, i * 120);

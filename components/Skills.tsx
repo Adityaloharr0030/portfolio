@@ -90,13 +90,13 @@ export default function Skills() {
         </div>
 
         {/* Progress bars */}
-        <div className={styles["skills-bars"]} data-aos="fade-up">
+        <div className={`${styles["skills-bars"]} js-skills-bars`} data-aos="fade-up">
           <h3 className={styles["skills-bars-title"]}>Proficiency</h3>
           {bars.map((bar, i) => (
             <div className={styles["skill-bar-item"]} key={i}>
               <div className={styles["skill-bar-label"]}><span>{bar.label}</span><span>{bar.width}%</span></div>
               <div className={styles["skill-bar-track"]}>
-                <div className={styles["skill-bar-fill"]} data-width={bar.width}></div>
+                <div className={`${styles["skill-bar-fill"]} js-skill-bar-fill`} data-width={bar.width}></div>
               </div>
             </div>
           ))}
