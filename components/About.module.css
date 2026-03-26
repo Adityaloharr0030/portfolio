@@ -1,41 +1,50 @@
 .aboutGrid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 48px;
+  gap: var(--space-10);
   align-items: start;
 }
 
-/* JSON Card */
+/* System Dashboard (formerly JSON Card) */
 .jsonCard {
   background: var(--surface-low);
+  border: 1px solid var(--border);
   overflow: hidden;
-  box-shadow: var(--shadow-bloom);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
   position: relative;
+  transition: var(--trans);
+}
+
+.jsonCard:hover {
+  border-color: var(--border-hover);
+  box-shadow: 0 15px 40px rgba(0,240,255,0.05);
 }
 
 .jsonHeader {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 12px 16px;
-  background: rgba(0,240,255,0.02);
-  border-bottom: 1px solid rgba(0,240,255,0.06);
+  padding: var(--space-3) var(--space-4);
+  background: var(--surface-mid);
+  border-bottom: 1px solid var(--border);
 }
 
 .jsonFile {
   font-family: var(--font-mono);
-  font-size: 0.72rem;
+  font-size: 0.65rem;
+  letter-spacing: 1px;
   color: var(--accent);
+  text-transform: uppercase;
 }
 
 .jsonDots {
   display: flex;
-  gap: 6px;
+  gap: var(--space-2);
 }
 
 .jsonDots span {
-  width: 10px;
-  height: 10px;
+  width: 8px;
+  height: 8px;
   border-radius: 50%;
 }
 
@@ -44,25 +53,26 @@
 .jsonDots span:nth-child(3) { background: #27c93f; }
 
 .jsonBody {
-  padding: 24px;
+  padding: var(--space-6);
   overflow-x: auto;
 }
 
 .jsonCode {
   font-family: var(--font-mono);
-  font-size: 0.88rem;
-  line-height: 2;
+  font-size: 0.85rem;
+  line-height: 1.8;
   display: block;
 }
 
 .jsonBrace { color: var(--text-muted); }
 
 .jsonLine {
-  padding-left: 24px;
+  padding-left: var(--space-5);
 }
 
 .jsonKey {
   color: var(--accent);
+  opacity: 0.9;
 }
 
 .jsonColon {
@@ -81,48 +91,50 @@
   color: var(--text-muted);
 }
 
-/* Right side */
+/* Right side: Stats & Info */
 .aboutRight {
   display: flex;
   flex-direction: column;
-  gap: 28px;
+  gap: var(--space-8);
 }
 
 .statsGrid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 16px;
+  gap: var(--space-4);
 }
 
 .statCard {
   background: var(--surface-low);
-  padding: 20px;
+  border: 1px solid var(--border);
+  padding: var(--space-5);
   text-align: center;
   transition: var(--trans);
   position: relative;
 }
 
 .statCard:hover {
-  background: var(--surface-mid);
-  box-shadow: var(--shadow-glow);
+  border-color: var(--accent);
+  background: var(--bg-card-hover);
+  transform: translateY(-4px);
 }
 
 .statNumber {
   display: block;
   font-family: var(--font-display);
-  font-size: 1.8rem;
+  font-size: 1.75rem;
   font-weight: 700;
   color: var(--accent);
-  text-shadow: 0 0 15px rgba(0,240,255,0.3);
+  text-shadow: 0 0 12px rgba(0,240,255,0.2);
 }
 
 .statLabel {
   font-family: var(--font-mono);
-  font-size: 0.78rem;
+  font-size: 0.65rem;
   color: var(--text-secondary);
-  letter-spacing: 1px;
+  letter-spacing: 2px;
   text-transform: uppercase;
-  margin-top: 4px;
+  margin-top: var(--space-1);
   display: block;
 }
 
@@ -130,92 +142,102 @@
 .infoCards {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: var(--space-3);
 }
 
 .infoCard {
   display: flex;
-  align-items: flex-start;
-  gap: 16px;
-  padding: 16px;
+  align-items: center;
+  gap: var(--space-5);
+  padding: var(--space-4) var(--space-5);
   background: var(--surface-low);
+  border: 1px solid var(--border);
   transition: var(--trans);
 }
 
 .infoCard:hover {
+  border-color: var(--border-hover);
   background: var(--surface-mid);
-  box-shadow: var(--shadow-glow);
 }
 
 .infoCard i {
   color: var(--accent);
-  font-size: 1.2rem;
-  margin-top: 2px;
-  text-shadow: 0 0 8px rgba(0,240,255,0.4);
+  font-size: 1.1rem;
+  opacity: 0.8;
 }
 
 .infoCard h4 {
-  font-family: var(--font-mono);
-  font-size: 0.85rem;
+  font-family: var(--font-display);
+  font-size: 0.75rem;
+  letter-spacing: 1px;
   color: var(--text-primary);
-  margin-bottom: 2px;
+  margin-bottom: var(--space-1);
+  text-transform: uppercase;
 }
 
 .infoCard p {
-  font-size: 0.78rem;
+  font-family: var(--font-body);
+  font-size: 0.85rem;
   color: var(--text-secondary);
+  line-height: 1.4;
 }
 
 .infoCard span {
   font-family: var(--font-mono);
   font-size: 0.7rem;
   color: var(--text-muted);
+  display: block;
+  margin-top: var(--space-1);
 }
 
 /* Actions */
 .aboutActions {
   display: flex;
-  gap: 16px;
+  gap: var(--space-5);
   align-items: center;
   flex-wrap: wrap;
+  margin-top: var(--space-2);
 }
 
 .statusPill {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
+  gap: var(--space-3);
   font-family: var(--font-mono);
-  font-size: 0.75rem;
-  padding: 8px 16px;
+  font-size: 0.7rem;
+  letter-spacing: 1px;
+  padding: var(--space-2) var(--space-4);
   color: #27c93f;
-  background: rgba(39,201,63,0.05);
+  background: rgba(39,201,63,0.03);
+  border: 1px solid rgba(39,201,63,0.1);
+  text-transform: uppercase;
 }
 
 .statusDot {
-  width: 8px;
-  height: 8px;
+  width: 6px;
+  height: 6px;
   background: #27c93f;
-  box-shadow: 0 0 8px rgba(39,201,63,0.6);
+  box-shadow: 0 0 10px rgba(39,201,63,0.5);
   animation: pulse 2s ease-in-out infinite;
 }
 
 @keyframes pulse {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.4; }
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.4; transform: scale(1.2); }
 }
 
 /* Responsive */
 @media (max-width: 900px) {
   .aboutGrid {
     grid-template-columns: 1fr;
-    gap: 32px;
+    gap: var(--space-8);
   }
 }
 
 @media (max-width: 480px) {
   .statsGrid {
-    grid-template-columns: 1fr 1fr;
-    gap: 10px;
+    grid-template-columns: 1fr;
+    gap: var(--space-3);
   }
 
   .aboutActions {

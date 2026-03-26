@@ -8,47 +8,58 @@
 
 /* ---------- CSS Variables ---------- */
 :root {
-  --bg-primary:    #080c10;
+  /* --- Neural Protocol Colors --- */
+  --bg-primary:    #05080b; /* Deeper Obsidian */
   --bg-secondary:  #0a0f14;
-  --bg-card:       rgba(0, 240, 255, 0.02);
-  --bg-card-hover: rgba(0, 240, 255, 0.06);
+  --bg-card:       rgba(0, 240, 255, 0.015);
+  --bg-card-hover: rgba(0, 240, 255, 0.05);
 
-  --accent:        #00f0ff;
+  --accent:        #00f0ff; /* Electric Cyan */
   --accent-dim:    #00b8c4;
-  --accent-2:      #7b2fff;
+  --accent-2:      #7b2fff; /* Arc Violet */
   --accent-3:      #65afff;
   --accent-grad:   linear-gradient(135deg, #00f0ff 0%, #7b2fff 100%);
   --neural-grad:   linear-gradient(45deg, #00f0ff 0%, #65afff 100%);
   --accent-glow:   0 0 20px rgba(0,240,255,0.4), 0 0 60px rgba(0,240,255,0.1);
 
-  --text-primary:  #e0e3e8;
-  --text-secondary:#8892a4;
-  --text-muted:    #3a3f4b;
+  --text-primary:  #f0f2f5;
+  --text-secondary:#94a3b8;
+  --text-muted:    #475569;
 
-  --border:        rgba(0,240,255,0.08);
-  --border-hover:  rgba(0,240,255,0.35);
+  --border:        rgba(0,240,255,0.06);
+  --border-hover:  rgba(0,240,255,0.3);
 
-  --glass-bg:      rgba(10,15,19,0.75);
-  --glass-border:  rgba(0,240,255,0.06);
+  --glass-bg:      rgba(5,8,11,0.8);
+  --glass-border:  rgba(0,240,255,0.05);
 
-  --surface-low:   #0f1418;
-  --surface-mid:   #151a1f;
-  --surface-high:  #1b2026;
-  --surface-top:   #21262c;
+  --surface-low:   #0d1117;
+  --surface-mid:   #161b22;
+  --surface-high:  #21262d;
 
+  /* --- Spacing Scale (8px base) --- */
+  --space-1: 0.25rem; /* 4px */
+  --space-2: 0.5rem;  /* 8px */
+  --space-3: 0.75rem; /* 12px */
+  --space-4: 1rem;    /* 16px */
+  --space-5: 1.5rem;  /* 24px */
+  --space-6: 2rem;    /* 32px */
+  --space-8: 3rem;    /* 48px */
+  --space-10: 4rem;   /* 64px */
+  --space-12: 6rem;   /* 96px */
+
+  /* --- Depth & Radius --- */
   --radius-sm:    0px;
   --radius-md:    0px;
   --radius-lg:    0px;
-
   --shadow-bloom:  0 0 24px rgba(0,240,255,0.1);
   --shadow-glow:   0 0 15px rgba(0,240,255,0.2);
 
-  --nav-h:        72px;
-  --trans:        all 0.3s cubic-bezier(0.4,0,0.2,1);
+  --nav-h:        80px;
+  --trans:        all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 
   --font-display: 'Orbitron', sans-serif;
   --font-mono:    'Share Tech Mono', 'IBM Plex Mono', monospace;
-  --font-body:    'IBM Plex Mono', 'Space Grotesk', monospace;
+  --font-body:    'Inter', 'Space Grotesk', sans-serif; /* Cleaner body font */
 }
 
 /* ---------- Reset ---------- */

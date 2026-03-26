@@ -18,10 +18,10 @@ export default function Hero() {
   const deleting = useRef(false);
 
   const [termLines, setTermLines] = useState([
-    { cmd: "npm run aditya --mode=build", out: "✓ Portfolio compiled — 0 errors", visible: true, typed: "" },
-    { cmd: "mongod --port 27017", out: "✓ MongoDB connected on port 27017", visible: false, typed: "" },
-    { cmd: "node server.js", out: "✓ Server running at localhost:3000", visible: false, typed: "" },
-    { cmd: "git push origin main", out: "✓ Deployed to production 🚀", visible: false, typed: "" },
+    { cmd: "neo --init neural_protocol", out: "✓ Neural interface initialized", visible: true, typed: "" },
+    { cmd: "sys --check --mode=stealth", out: "✓ Stealth mode active [0 detected]", visible: false, typed: "" },
+    { cmd: "port --dev localhost:3000", out: "✓ Neural link established", visible: false, typed: "" },
+    { cmd: "git push neural main", out: "✓ Repository synchronized 🚀", visible: false, typed: "" },
   ]);
 
   useEffect(() => {
@@ -42,7 +42,7 @@ export default function Hero() {
           roleIdx.current = (roleIdx.current + 1) % roles.length;
         }
       }
-      return setTimeout(tick, deleting.current ? 40 : 80);
+      return setTimeout(tick, deleting.current ? 30 : 60);
     };
     const t = tick();
     return () => clearTimeout(t);
@@ -50,7 +50,7 @@ export default function Hero() {
 
   useEffect(() => {
     const timeouts: ReturnType<typeof setTimeout>[] = [];
-    let delay = 600;
+    let delay = 800;
     termLines.forEach((line, idx) => {
       timeouts.push(setTimeout(() => {
         setTermLines((prev) => prev.map((l, i) => i === idx ? { ...l, visible: true } : l));
@@ -60,9 +60,9 @@ export default function Hero() {
           setTermLines((prev) =>
             prev.map((l, i) => i === idx ? { ...l, typed: line.cmd.slice(0, c) } : l)
           );
-        }, delay + 100 + c * 45));
+        }, delay + 100 + c * 40));
       }
-      delay += line.cmd.length * 45 + 800;
+      delay += line.cmd.length * 40 + 1000;
     });
     return () => timeouts.forEach(clearTimeout);
   // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -72,11 +72,6 @@ export default function Hero() {
     <section id="home" className={styles.hero}>
       <div className="grid-bg"></div>
 
-      {/* Kanji decorative elements */}
-      <span className="kanji-decor top-right" aria-hidden="true">電脳世界</span>
-      <span className="kanji-decor bottom-left" aria-hidden="true">未来開発</span>
-
-
       {/* Geometric corner accents */}
       <div className={styles.cornerAccentTL} aria-hidden="true"></div>
       <div className={styles.cornerAccentBR} aria-hidden="true"></div>
@@ -85,10 +80,10 @@ export default function Hero() {
         <div className={styles.heroLeft} data-aos="fade-right">
           <div className={styles.systemStatus}>
             <span className="status-pulse"></span>
-            <span>SYSTEM_STATUS: ONLINE</span>
+            <span>NEURAL_LINK: ACTIVE</span>
           </div>
           <p className={styles.heroGreeting}>
-            <span className={styles.prompt}>&gt;_</span> Hello, World
+            <span className={styles.prompt}>&gt;_</span> protocol_handshake
           </p>
           <h1 className={styles.heroName}>
             <span className="glitch" data-text="ADITYA">ADITYA</span>{" "}
@@ -96,24 +91,24 @@ export default function Hero() {
           </h1>
           <div className={styles.glowLine}></div>
           <div className={styles.heroRoles}>
-            <span className={styles.rolePrefix}>root@portfolio:~$ </span>
+            <span className={styles.rolePrefix}>guest@neural_net:~$ </span>
             <span className={styles.roleTyped}>{typedText}</span>
             <span className={styles.cursor}>▌</span>
           </div>
           <p className={styles.heroBio}>
-            B.Tech Computer Engineering student (2027) building performant,
-            scalable web applications with modern JavaScript frameworks and
-            cloud-ready backends.
+            Crafting mathematically precise, high-performance web architectures. 
+            B.Tech Computer Engineering (2027) focused on building the future 
+            of the neural web through scalable JavaScript protocols.
           </p>
           <div className={styles.heroCtaGroup}>
             <a href="#projects" className="btn btn-primary">
-              <i className="fa-solid fa-terminal"></i> View Projects
+              <i className="fa-solid fa-terminal"></i> Execute_Projects
             </a>
             <a href="/resume.pdf" target="_blank" download="Aditya_Lohar_Resume.pdf" className="btn btn-outline">
-              <i className="fa-solid fa-download"></i> Download Resume
+              <i className="fa-solid fa-download"></i> DL_Resume
             </a>
             <a href="#contact" className="btn btn-outline">
-              <i className="fa-solid fa-satellite-dish"></i> Contact Me
+              <i className="fa-solid fa-satellite-dish"></i> Contact_Node
             </a>
           </div>
           <div className={styles.heroSocial}>
@@ -137,15 +132,15 @@ export default function Hero() {
               <span className={styles.tYellow}></span>
               <span className={styles.tGreen}></span>
             </div>
-            <span className={styles.tTitle}>aditya@portfolio ~/dev</span>
-            <span className={styles.tLive}>● LIVE</span>
+            <span className={styles.tTitle}>aditya@neural_interface ~/dev</span>
+            <span className={styles.tLive}>● ENCRYPTED</span>
           </div>
           <div className={styles.terminalBody}>
             {termLines.map((line, idx) => (
               line.visible && (
                 <div key={idx}>
                   <div className={styles.tLine}>
-                    <span className={styles.tPrompt}>$</span>
+                    <span className={styles.tPrompt}>&gt;</span>
                     <span className={styles.tCmd}>{line.typed}</span>
                   </div>
                   {line.typed.length === line.cmd.length && (
@@ -156,10 +151,10 @@ export default function Hero() {
                 </div>
               )
             ))}
-            <div className={styles.tCursor}>▋</div>
+            <div className={styles.tCursor}>▌</div>
           </div>
           <div className={styles.terminalStackRow}>
-            {["React", "Node.js", "MongoDB", "Next.js", "TypeScript"].map((tech) => (
+            {["Next.js", "TypeScript", "Node.js", "MongoDB", "Cloud"].map((tech) => (
               <span className={styles.tsPill} key={tech}>{tech}</span>
             ))}
           </div>
