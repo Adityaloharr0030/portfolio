@@ -1,19 +1,15 @@
-import { Inter, Fira_Code } from "next/font/google";
+import { IBM_Plex_Mono } from "next/font/google";
 import "./globals.css";
 import WebVitals from "@/components/WebVitals";
-import { ThemeProvider } from "@/components/ThemeProvider";
 import MagicCursor from "@/components/MagicCursor";
+import { SpeedInsights } from "@vercel/speed-insights/next";
+import { Analytics } from "@vercel/analytics/react";
 
-const inter = Inter({
+const ibmPlexMono = IBM_Plex_Mono({
   subsets: ["latin"],
+  weight: ["300", "400", "500", "600", "700"],
   display: "swap",
-  variable: "--font-inter",
-});
-
-const firaCode = Fira_Code({
-  subsets: ["latin"],
-  display: "swap",
-  variable: "--font-fira-code",
+  variable: "--font-ibm-plex-mono",
 });
 
 export const metadata = {
@@ -32,20 +28,27 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en">
       <head>
         {/* Font Awesome */}
         <link
           rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
         />
+        {/* Google Fonts for Orbitron and Share Tech Mono */}
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Share+Tech+Mono&family=IBM+Plex+Mono:wght@300;400;500;600;700&display=swap"
+          rel="stylesheet"
+        />
       </head>
-      <body className={`${inter.variable} ${firaCode.variable} ${inter.className}`}>
-        <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
-          <MagicCursor />
-          <WebVitals />
-          {children}
-        </ThemeProvider>
+      <body className={ibmPlexMono.variable} suppressHydrationWarning>
+        <MagicCursor />
+        <WebVitals />
+        {children}
+        <SpeedInsights />
+        <Analytics />
       </body>
     </html>
   );

@@ -1,17 +1,20 @@
+"use client";
+
+import styles from "./Skills.module.css";
+
 const categories = [
   {
-    icon: "fa-solid fa-code",
     title: "Languages",
+    icon: "fa-solid fa-code",
     pills: [
       { icon: "fa-brands fa-js", label: "JavaScript (ES6+)" },
       { icon: "fa-brands fa-python", label: "Python" },
       { icon: "fa-brands fa-java", label: "Java" },
     ],
-    delay: 0,
   },
   {
-    icon: "fa-solid fa-desktop",
     title: "Frontend",
+    icon: "fa-solid fa-desktop",
     pills: [
       { icon: "fa-brands fa-react", label: "React" },
       { emoji: "⚡", label: "Next.js" },
@@ -19,84 +22,71 @@ const categories = [
       { icon: "fa-brands fa-css3-alt", label: "CSS3" },
       { icon: "fa-brands fa-bootstrap", label: "Bootstrap" },
     ],
-    delay: 80,
   },
   {
-    icon: "fa-solid fa-server",
     title: "Backend",
+    icon: "fa-solid fa-server",
     pills: [
       { icon: "fa-brands fa-node-js", label: "Node.js" },
       { emoji: "🚀", label: "Express.js" },
-      { emoji: "🔗", label: "RESTful APIs" },
+      { emoji: "🔗", label: "REST APIs" },
     ],
-    delay: 160,
   },
   {
-    icon: "fa-solid fa-database",
     title: "Databases",
+    icon: "fa-solid fa-database",
     pills: [
       { emoji: "🍃", label: "MongoDB" },
       { emoji: "🐬", label: "MySQL" },
     ],
-    delay: 240,
   },
   {
-    icon: "fa-solid fa-toolbox",
     title: "Dev Tools",
+    icon: "fa-solid fa-toolbox",
     pills: [
       { icon: "fa-brands fa-git-alt", label: "Git" },
       { icon: "fa-brands fa-github", label: "GitHub" },
-      { emoji: "🐳", label: "Docker" },
-      { emoji: "📮", label: "Postman" },
       { emoji: "💻", label: "VS Code" },
+      { emoji: "📮", label: "Postman" },
+      { icon: "fa-brands fa-docker", label: "Docker" },
     ],
-    delay: 320,
   },
 ];
-
-const bars = [
-  { label: "JavaScript / ES6+", width: 90 },
-  { label: "React / Next.js", width: 85 },
-  { label: "Node.js / Express", width: 82 },
-  { label: "MongoDB / MySQL", width: 75 },
-  { label: "Git / GitHub", width: 80 },
-];
-
-import styles from "./Skills.module.css";
 
 export default function Skills() {
   return (
     <section id="skills" className="section section-alt">
       <div className="container">
         <div className="section-header" data-aos="fade-up">
-          <span className="section-tag">What I work with</span>
-          <h2 className="section-title">Technical <span className="gradient-text">Skills</span></h2>
+          <span className="section-tag">&gt; tech_stack</span>
+          <h2 className="section-title">
+            Technical <span className="gradient-text">Skills</span>
+          </h2>
+          <p className="section-sub">Technologies and tools I use to bring ideas to life.</p>
         </div>
 
-        <div className={styles["skills-grid"]}>
+
+        <div className={styles.skillsGrid}>
           {categories.map((cat, i) => (
-            <div className={styles["skill-category"]} key={i} data-aos="fade-up" data-aos-delay={cat.delay}>
-              <div className={styles["skill-cat-icon"]}><i className={cat.icon}></i></div>
-              <h3 className={styles["skill-cat-title"]}>{cat.title}</h3>
-              <div className={styles["skill-pills"]}>
+            <div
+              className={styles.skillCategory}
+              key={i}
+              data-aos="fade-up"
+              data-aos-delay={i * 80}
+            >
+              <div className={styles.catHeader}>
+                <div className={styles.catIcon}>
+                  <i className={cat.icon}></i>
+                </div>
+                <h3 className={styles.catTitle}>{cat.title}</h3>
+              </div>
+              <div className={styles.pillsWrap}>
                 {cat.pills.map((pill, j) => (
-                  <span className={styles["skill-pill"]} key={j}>
-                    {pill.icon ? <i className={pill.icon}></i> : pill.emoji} {pill.label}
+                  <span className={styles.pill} key={j}>
+                    {pill.icon ? <i className={pill.icon}></i> : pill.emoji}{" "}
+                    {pill.label}
                   </span>
                 ))}
-              </div>
-            </div>
-          ))}
-        </div>
-
-        {/* Progress bars */}
-        <div className={`${styles["skills-bars"]} js-skills-bars`} data-aos="fade-up">
-          <h3 className={styles["skills-bars-title"]}>Proficiency</h3>
-          {bars.map((bar, i) => (
-            <div className={styles["skill-bar-item"]} key={i}>
-              <div className={styles["skill-bar-label"]}><span>{bar.label}</span><span>{bar.width}%</span></div>
-              <div className={styles["skill-bar-track"]}>
-                <div className={`${styles["skill-bar-fill"]} js-skill-bar-fill`} data-width={bar.width}></div>
               </div>
             </div>
           ))}

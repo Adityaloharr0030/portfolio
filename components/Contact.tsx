@@ -2,6 +2,7 @@
 
 import { useRef, useState, useEffect } from "react";
 import emailjs from "@emailjs/browser";
+import styles from "./Contact.module.css";
 
 export default function Contact() {
   const form = useRef<HTMLFormElement>(null);
@@ -12,7 +13,6 @@ export default function Contact() {
   const EMAILJS_TEMPLATE_ID = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID;
   const EMAILJS_PUBLIC_KEY = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY;
 
-  // Initialize EmailJS once on component mount
   useEffect(() => {
     if (EMAILJS_PUBLIC_KEY) {
       emailjs.init(EMAILJS_PUBLIC_KEY);
@@ -22,25 +22,17 @@ export default function Contact() {
   const sendEmail = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    // Validate environment variables
     if (!EMAILJS_SERVICE_ID || !EMAILJS_TEMPLATE_ID || !EMAILJS_PUBLIC_KEY) {
-      console.error("Missing EmailJS configuration:", {
-        serviceId: !EMAILJS_SERVICE_ID,
-        templateId: !EMAILJS_TEMPLATE_ID,
-        publicKey: !EMAILJS_PUBLIC_KEY,
-      });
       alert("Configuration error. Please check your environment variables.");
       return;
     }
 
-    // Basic internal validation
     const formData = new FormData(form.current!);
     const name = (formData.get("name") as string)?.trim();
     const email = (formData.get("email") as string)?.trim();
-    const subject = (formData.get("subject") as string)?.trim();
     const message = (formData.get("message") as string)?.trim();
 
-    if (!name || !email || !subject || !message) {
+    if (!name || !email || !message) {
       alert("Please fill out all fields.");
       return;
     }
@@ -51,13 +43,7 @@ export default function Contact() {
       .send(
         EMAILJS_SERVICE_ID,
         EMAILJS_TEMPLATE_ID,
-        {
-          name,
-          email,
-          subject,
-          message,
-          time: new Date().toLocaleString(),
-        },
+        { name, email, message, subject: "Portfolio Contact", time: new Date().toLocaleString() },
         EMAILJS_PUBLIC_KEY
       )
       .then(
@@ -69,177 +55,97 @@ export default function Contact() {
         },
         (error) => {
           setIsSending(false);
-          console.error("EmailJS Error:", error);
           alert(`Failed to send message. Error: ${error?.message || "Unknown error"}`);
         }
       );
   };
+
   return (
-    <section id="contact" className="section section-alt">
+    <section id="contact" className="section">
       <div className="container">
         <div className="section-header" data-aos="fade-up">
-          <span className="section-tag">Let&apos;s connect</span>
+          <span className="section-tag">&gt; ping_me</span>
           <h2 className="section-title">
             Get In <span className="gradient-text">Touch</span>
           </h2>
           <p className="section-sub">
-            I&apos;m actively looking for internship opportunities. Whether you
-            have a question, a project idea, or just want to say hi — my inbox
-            is always open!
+            I&apos;m actively looking for internship opportunities. My inbox is always open!
           </p>
         </div>
 
-        <div className="contact-grid">
-          {/* Left: contact cards */}
-          <div className="contact-cards" data-aos="fade-right">
-            <a
-              href="mailto:lohar6987@gmail.com"
-              className="contact-card"
-              id="email-card"
-            >
-              <div className="contact-card-icon">
-                <i className="fa-solid fa-envelope"></i>
+        <div className={styles.contactGrid}>
+          {/* Left: Contact Cards */}
+          <div className={styles.contactCards} data-aos="fade-right">
+            <div className={styles.statusBanner}>
+              <span className={styles.statusDot}></span>
+              <span>Available for internships</span>
+            </div>
+
+            <a href="mailto:lohar6987@gmail.com" className={styles.contactCard}>
+              <i className="fa-solid fa-envelope"></i>
+              <div>
+                <span className={styles.cardLabel}>email</span>
+                <span className={styles.cardValue}>lohar6987@gmail.com</span>
               </div>
-              <div className="contact-card-info">
-                <span className="contact-card-label">Email me at</span>
-                <span className="contact-card-value">
-                  lohar6987@gmail.com
-                </span>
-              </div>
-              <i className="fa-solid fa-arrow-right contact-card-arrow"></i>
+              <i className={`fa-solid fa-arrow-right ${styles.cardArrow}`}></i>
             </a>
 
             <a
               href="https://www.linkedin.com/in/aditya-lohar-3037b32b9"
               target="_blank"
               rel="noopener"
-              className="contact-card"
-              id="linkedin-card"
+              className={styles.contactCard}
             >
-              <div className="contact-card-icon linkedin-icon">
-                <i className="fa-brands fa-linkedin"></i>
+              <i className="fa-brands fa-linkedin"></i>
+              <div>
+                <span className={styles.cardLabel}>linkedin</span>
+                <span className={styles.cardValue}>aditya-lohar</span>
               </div>
-              <div className="contact-card-info">
-                <span className="contact-card-label">Connect on</span>
-                <span className="contact-card-value">
-                  linkedin.com/in/aditya-lohar-3037b32b9
-                </span>
-              </div>
-              <i className="fa-solid fa-arrow-right contact-card-arrow"></i>
+              <i className={`fa-solid fa-arrow-right ${styles.cardArrow}`}></i>
             </a>
 
             <a
               href="https://github.com/Adityaloharr0030"
               target="_blank"
               rel="noopener"
-              className="contact-card"
-              id="github-card"
+              className={styles.contactCard}
             >
-              <div className="contact-card-icon github-icon">
-                <i className="fa-brands fa-github"></i>
+              <i className="fa-brands fa-github"></i>
+              <div>
+                <span className={styles.cardLabel}>github</span>
+                <span className={styles.cardValue}>Adityaloharr0030</span>
               </div>
-              <div className="contact-card-info">
-                <span className="contact-card-label">Follow on</span>
-                <span className="contact-card-value">
-                  github.com/Adityaloharr0030
-                </span>
-              </div>
-              <i className="fa-solid fa-arrow-right contact-card-arrow"></i>
+              <i className={`fa-solid fa-arrow-right ${styles.cardArrow}`}></i>
             </a>
           </div>
 
-          {/* Right: contact form */}
-          <div className="contact-form-wrap" data-aos="fade-left">
-            <form
-              ref={form}
-              onSubmit={sendEmail}
-              id="contact-form"
-              className="contact-form"
-              noValidate
-            >
-              <div className="form-group">
-                <label htmlFor="name">Your Name</label>
-                <div className="input-wrap">
-                  <i className="fa-solid fa-user"></i>
-                  <input
-                    type="text"
-                    id="name"
-                    name="name"
-                    placeholder="John Smith"
-                    required
-                  />
-                </div>
+          {/* Right: Form */}
+          <div className={styles.contactFormWrap} data-aos="fade-left">
+            <form ref={form} onSubmit={sendEmail} className={styles.contactForm} noValidate>
+              <div className={styles.formGroup}>
+                <label htmlFor="contact-name">name_</label>
+                <input type="text" id="contact-name" name="name" placeholder="John Smith" required />
               </div>
-              <div className="form-group">
-                <label htmlFor="email">Email Address</label>
-                <div className="input-wrap">
-                  <i className="fa-solid fa-envelope"></i>
-                  <input
-                    type="email"
-                    id="email"
-                    name="email"
-                    placeholder="john@example.com"
-                    required
-                  />
-                </div>
+              <div className={styles.formGroup}>
+                <label htmlFor="contact-email">email_</label>
+                <input type="email" id="contact-email" name="email" placeholder="john@example.com" required />
               </div>
-              <div className="form-group">
-                <label htmlFor="subject">Subject</label>
-                <div className="input-wrap">
-                  <i className="fa-solid fa-tag"></i>
-                  <input
-                    type="text"
-                    id="subject"
-                    name="subject"
-                    placeholder="Internship Opportunity"
-                    required
-                  />
-                </div>
+              <div className={styles.formGroup}>
+                <label htmlFor="contact-message">message_</label>
+                <textarea id="contact-message" name="message" rows={5} placeholder="Hi Aditya, I'd love to discuss..." required></textarea>
               </div>
-              <div className="form-group">
-                <label htmlFor="message">Message</label>
-                <div className="input-wrap textarea-wrap">
-                  <i className="fa-solid fa-comment"></i>
-                  <textarea
-                    id="message"
-                    name="message"
-                    rows={5}
-                    placeholder="Hi Aditya, I'd love to discuss..."
-                    required
-                  ></textarea>
-                </div>
-              </div>
-              
-              {/* Hidden field for timestamp */}
-              <input 
-                type="hidden" 
-                name="time" 
-                value={new Date().toLocaleString()}
-              />
-              <button
-                type="submit"
-                className="btn btn-primary btn-full"
-                id="submit-btn"
-                disabled={isSending}
-              >
+
+              <button type="submit" className="btn btn-primary btn-full" disabled={isSending}>
                 {!isSending ? (
-                  <span id="btn-text">
-                    <i className="fa-solid fa-paper-plane"></i> Send Message
-                  </span>
+                  <span><i className="fa-solid fa-satellite-dish"></i> Send Transmission</span>
                 ) : (
-                  <span id="btn-loader">
-                    <i className="fa-solid fa-spinner fa-spin"></i> Sending...
-                  </span>
+                  <span><i className="fa-solid fa-spinner fa-spin"></i> Sending...</span>
                 )}
               </button>
+
               {isSuccess && (
-                <p
-                  className="form-success"
-                  id="form-success"
-                  style={{ display: "block" }}
-                >
-                  <i className="fa-solid fa-circle-check"></i> Message sent
-                  successfully! I&apos;ll reply soon.
+                <p className={styles.formSuccess}>
+                  <i className="fa-solid fa-circle-check"></i> Message sent successfully! I&apos;ll reply soon.
                 </p>
               )}
             </form>

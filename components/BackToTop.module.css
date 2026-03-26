@@ -1,0 +1,33 @@
+.backTop {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(8,12,16,0.9);
+  border: 1px solid rgba(0,240,255,0.2);
+  border-radius: 4px;
+  color: var(--accent);
+  font-size: 1rem;
+  z-index: 999;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(20px);
+  transition: all 0.3s ease;
+  box-shadow: 0 0 15px rgba(0,240,255,0.1);
+}
+
+.backTop.visible {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.backTop:hover {
+  border-color: var(--accent);
+  box-shadow: 0 0 25px rgba(0,240,255,0.3);
+  background: rgba(0,240,255,0.05);
+}

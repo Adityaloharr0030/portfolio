@@ -1,0 +1,131 @@
+.logContainer {
+  background: var(--surface-low);
+  overflow: hidden;
+  max-width: 800px;
+  margin: 0 auto;
+  box-shadow: var(--shadow-bloom);
+  position: relative;
+}
+
+.logHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 20px;
+  background: rgba(0,240,255,0.02);
+  border-bottom: 1px solid rgba(0,240,255,0.06);
+}
+
+.logFile {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--text-muted);
+}
+
+.logBranch {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: var(--accent);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.logBody {
+  padding: 20px;
+}
+
+.logEntry {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 12px 0;
+  border-bottom: 1px solid rgba(0,240,255,0.03);
+  gap: 16px;
+  transition: var(--trans);
+}
+
+.logEntry:hover {
+  background: rgba(0,240,255,0.02);
+  padding-left: 8px;
+}
+
+.logEntry:last-of-type {
+  border-bottom: none;
+}
+
+.logLine {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  flex: 1;
+}
+
+.logHash {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: #ffbd2e;
+  background: rgba(255,189,46,0.08);
+  padding: 2px 8px;
+  flex-shrink: 0;
+}
+
+.logBranchTag {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  color: var(--accent-2);
+  background: rgba(123,47,255,0.08);
+  padding: 2px 8px;
+  flex-shrink: 0;
+}
+
+.logMessage {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--text-primary);
+}
+
+.logDate {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  color: var(--text-muted);
+  flex-shrink: 0;
+  white-space: nowrap;
+}
+
+.logPrompt {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 12px;
+  padding-top: 12px;
+}
+
+.promptChar {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  color: var(--accent);
+  text-shadow: 0 0 8px rgba(0,240,255,0.5);
+}
+
+.blinkCursor {
+  font-family: var(--font-mono);
+  color: var(--accent);
+  animation: blink 1s step-end infinite;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+@media (max-width: 600px) {
+  .logEntry {
+    flex-direction: column;
+    gap: 6px;
+  }
+  .logLine {
+    gap: 8px;
+  }
+}

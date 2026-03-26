@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import styles from "./MagicCursor.module.css";
 
 export default function MagicCursor() {
   const cursorRef = useRef<HTMLDivElement>(null);
@@ -11,28 +12,61 @@ export default function MagicCursor() {
     const follower = followerRef.current;
     if (!cursor || !follower) return;
 
-    // We only execute on desktop pointer devices
     if (!window.matchMedia("(pointer: fine)").matches) return;
 
+    let mx = 0, my = 0, fx = 0, fy = 0;
+    let raf: number;
+
     const onMouseMove = (e: MouseEvent) => {
-      // Direct DOM manipulation for maximum performance off the React render cycle
-      cursor.style.left = `${e.clientX}px`;
-      cursor.style.top = `${e.clientY}px`;
-      
-      // The follower relies on the CSS `transition: all 0.15s ease` in globals.css
-      // to create the smooth trailing effect automatically!
-      follower.style.left = `${e.clientX}px`;
-      follower.style.top = `${e.clientY}px`;
+      mx = e.clientX;
+      my = e.clientY;
+      cursor.style.left = `${mx}px`;
+      cursor.style.top = `${my}px`;
+    };
+
+    const animate = () => {
+      fx += (mx - fx) * 0.12;
+      fy += (my - fy) * 0.12;
+      follower.style.left = `${fx}px`;
+      follower.style.top = `${fy}px`;
+      raf = requestAnimationFrame(animate);
     };
 
     window.addEventListener("mousemove", onMouseMove);
-    return () => window.removeEventListener("mousemove", onMouseMove);
+    animate();
+
+    // Scale up on interactive elements
+    const interactives = document.querySelectorAll("a, button, .project-card, .contact-card, input, textarea");
+    const onEnter = () => {
+      cursor.style.transform = "translate(-50%,-50%) scale(2)";
+      follower.style.transform = "translate(-50%,-50%) scale(1.6)";
+      follower.style.borderColor = "rgba(0,240,255,0.8)";
+    };
+    const onLeave = () => {
+      cursor.style.transform = "translate(-50%,-50%) scale(1)";
+      follower.style.transform = "translate(-50%,-50%) scale(1)";
+      follower.style.borderColor = "rgba(0,240,255,0.4)";
+    };
+
+    interactives.forEach((el) => {
+      el.addEventListener("mouseenter", onEnter);
+      el.addEventListener("mouseleave", onLeave);
+    });
+
+    return () => {
+      window.removeEventListener("mousemove", onMouseMove);
+      cancelAnimationFrame(raf);
+      interactives.forEach((el) => {
+        el.removeEventListener("mouseenter", onEnter);
+        el.removeEventListener("mouseleave", onLeave);
+      });
+    };
   }, []);
 
   return (
     <>
-      <div id="cursor" ref={cursorRef} />
-      <div id="cursor-follower" ref={followerRef} />
+      <div className={styles.cursor} ref={cursorRef} />
+      <div className={styles.cursorFollower} ref={followerRef} />
     </>
   );
 }

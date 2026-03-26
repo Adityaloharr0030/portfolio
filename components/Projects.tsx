@@ -1,157 +1,124 @@
 "use client";
 
-import { useState } from "react";
+import styles from "./Projects.module.css";
 
 const projects = [
   {
     icon: "fa-solid fa-code",
     title: "Ani Editor",
     subtitle: "AI-Powered Web Code Editor",
-    role: "Full-Stack Developer",
-    roleAlt: false,
-    featured: true,
     category: "Web IDE",
     description:
-      "A full-featured, browser-based IDE delivering a desktop-class coding experience. Combines a smart CodeMirror editor with an integrated OpenAI-powered AI assistant, live HTML/CSS/JS preview, SQL playground with in-memory SQLite, and a security-first Node.js backend — all accessible from any browser.",
-    highlights: [
-      "AI Assistant — Code generation, bug fixing, optimization & full code reviews via OpenAI",
-      "Multi-File Editor with tab management, syntax highlighting & auto-save",
-      "Live Preview — Sandboxed iframe rendering HTML/CSS/JS changes in real time",
-      "Security-First — Rate limiting, input sanitization, XSS protection, CSP via Helmet.js",
+      "A full-featured, browser-based IDE delivering a desktop-class coding experience. Combines a smart CodeMirror editor with an integrated OpenAI-powered AI assistant, live HTML/CSS/JS preview, SQL playground with in-memory SQLite, and a security-first Node.js backend.",
+    features: [
+      "AI code generation, bug fixing & optimization via OpenAI",
+      "Multi-file editor with tab management & auto-save",
+      "Live sandboxed preview rendering HTML/CSS/JS in real time",
+      "Security-first: rate limiting, XSS protection, CSP via Helmet.js",
     ],
-    techLayers: [
-      { layer: "Frontend", items: ["React.js", "Vite", "CodeMirror"] },
-      { layer: "Backend", items: ["Node.js", "Express.js", "WebSocket"] },
-      { layer: "AI", items: ["OpenAI API", "Perplexity API"] },
-      { layer: "Security", items: ["Helmet.js", "Rate Limiting", "CSP"] },
-    ],
-    tech: ["React.js", "Vite", "CodeMirror", "Node.js", "Express.js", "OpenAI API", "SQLite", "Helmet.js"],
+    techStack: ["React.js", "Vite", "CodeMirror", "Node.js", "Express.js", "OpenAI API", "SQLite", "Helmet.js"],
     github: "https://github.com/Adityaloharr0030/Ani_page",
     live: null,
-    delay: 0,
   },
   {
     icon: "fa-solid fa-building-columns",
     title: "Bank Management System",
     subtitle: "Enterprise Java Desktop Application",
-    role: "Java Developer",
-    roleAlt: false,
-    featured: true,
     category: "Desktop App",
     description:
-      "A comprehensive, enterprise-style banking application demonstrating real-world software architecture with a full Swing GUI, MySQL integration, custom connection pooling, and proper layered design patterns — built entirely in Java.",
-    highlights: [
-      "Secure Authentication — Admin login with password hashing & access control",
-      "Full CRUD — Customer records & multiple account types (Savings & Current)",
-      "ACID Transactions — Deposits, withdrawals & fund transfers with auto-rollback",
-      "Custom Connection Pooling — Hand-built BasicConnectionPool without third-party libs",
+      "A comprehensive enterprise-style banking application demonstrating real-world software architecture with a full Swing GUI, MySQL integration, custom connection pooling, and proper layered design patterns — built entirely in Java.",
+    features: [
+      "Secure authentication with password hashing & access control",
+      "Full CRUD for customer records & multiple account types",
+      "ACID transactions: deposits, withdrawals & fund transfers",
+      "Custom connection pooling without third-party libraries",
     ],
-    techLayers: [
-      { layer: "Language", items: ["Java (JDK 8+)"] },
-      { layer: "GUI", items: ["Java Swing"] },
-      { layer: "Database", items: ["MySQL", "JDBC"] },
-      { layer: "Architecture", items: ["MVC", "DAO", "Service Layer"] },
-    ],
-    tech: ["Java", "Swing", "MySQL", "JDBC", "MVC", "DAO Pattern", "MD5 Hashing"],
+    techStack: ["Java", "Swing", "MySQL", "JDBC", "MVC", "DAO Pattern", "MD5 Hashing"],
     github: "https://github.com/Adityaloharr0030/Bank-management-system",
     live: null,
-    delay: 100,
   },
   {
     icon: "fa-solid fa-check-to-slot",
     title: "Digital Voting System",
     subtitle: "Secure Web Voting Platform",
-    role: "Frontend Developer",
-    roleAlt: true,
-    featured: false,
     category: "Web App",
     description:
       "A clean, accessible web interface for a digital voting platform. Provides a seamless experience for identity verification and secure vote casting, with responsive design and accessible form validation.",
-    highlights: [
+    features: [
       "Responsive UI optimized for all device sizes",
-      "Accessible form validation with real-time user feedback",
-      "Secure identity verification workflow before vote casting",
-      "Modern semantic HTML5 & CSS3 layout with clean UX patterns",
+      "Accessible form validation with real-time feedback",
+      "Secure identity verification workflow",
+      "Modern semantic HTML5 & CSS3 layout",
     ],
-    techLayers: [
-      { layer: "Frontend", items: ["HTML5", "CSS3", "JavaScript"] },
-      { layer: "Design", items: ["UI/UX", "Responsive Design", "Accessibility"] },
-    ],
-    tech: ["HTML5", "CSS3", "JavaScript", "UI/UX", "Responsive Design"],
+    techStack: ["HTML5", "CSS3", "JavaScript", "UI/UX", "Responsive Design"],
     github: "https://github.com/Adityaloharr0030/voting-system",
     live: null,
-    delay: 150,
   },
 ];
 
 export default function Projects() {
-  const [filter, setFilter] = useState("All");
-  const categories = ["All", ...Array.from(new Set(projects.map(p => p.category)))];
-
-  const filteredProjects = filter === "All" 
-    ? projects 
-    : projects.filter(p => p.category === filter);
-
   return (
     <section id="projects" className="section">
       <div className="container">
         <div className="section-header" data-aos="fade-up">
-          <span className="section-tag">What I&apos;ve built</span>
-          <h2 className="section-title">My <span className="gradient-text">Projects</span></h2>
-          <p className="section-sub">From AI-powered editors to enterprise banking — here are some highlights from my portfolio.</p>
+          <span className="section-tag">&gt; deployments</span>
+          <h2 className="section-title">
+            My <span className="gradient-text">Projects</span>
+          </h2>
+          <p className="section-sub">
+            From AI-powered editors to enterprise banking — highlights from my portfolio.
+          </p>
         </div>
 
-        <div className="project-filters" style={{ display: 'flex', justifyContent: 'center', gap: '12px', marginBottom: '48px', flexWrap: 'wrap' }} data-aos="fade-up">
-           {categories.map(cat => (
-             <button 
-               key={cat} 
-               onClick={() => setFilter(cat)}
-               className={`btn ${filter === cat ? 'btn-primary' : 'btn-outline'}`}
-               style={{ padding: '8px 20px', fontSize: '0.9rem' }}
-             >
-               {cat}
-             </button>
-           ))}
-        </div>
+        <div className={styles.projectsGrid}>
+          {projects.map((p, i) => (
+            <div
+              className={styles.projectCard}
+              key={i}
+              data-aos="fade-up"
+              data-aos-delay={i * 100}
+            >
+              {/* Card glow border */}
+              <div className={styles.cardGlow}></div>
 
-        <div className="projects-grid">
-          {filteredProjects.map((p, i) => (
-            <div className={`project-card${p.featured ? " project-card-featured" : ""}`} key={`${p.title}-${i}`} data-aos="fade-up" data-aos-delay={p.delay}>
-
-              <div className="project-card-header">
-                <div className="project-icon"><i className={p.icon}></i></div>
-                <div className="project-header-right">
-                  <span className="project-category">{p.category}</span>
-                  <div className="project-links">
-                    <a href={p.github} target="_blank" rel="noopener" className="p-link" title="View Source Code">
+              <div className={styles.cardInner}>
+                <div className={styles.cardTop}>
+                  <div className={styles.cardIcon}>
+                    <i className={p.icon}></i>
+                  </div>
+                  <div className={styles.cardLinks}>
+                    <a href={p.github} target="_blank" rel="noopener" className={styles.cardLink} title="Source Code">
                       <i className="fa-brands fa-github"></i>
                     </a>
                     {p.live && (
-                      <a href={p.live} target="_blank" rel="noopener" className="p-link p-link-live" title="Live Demo">
+                      <a href={p.live} target="_blank" rel="noopener" className={`${styles.cardLink} ${styles.cardLinkLive}`} title="Live Demo">
                         <i className="fa-solid fa-arrow-up-right-from-square"></i>
                       </a>
                     )}
                   </div>
                 </div>
-              </div>
 
-              <h3 className="project-title">{p.title}</h3>
-              <p className="project-subtitle">{p.subtitle}</p>
-              <p className="project-role">
-                <span className={`role-badge${p.roleAlt ? " role-badge-alt" : ""}`}>{p.role}</span>
-              </p>
-              <p className="project-description">{p.description}</p>
+                <span className={styles.cardCategory}>{p.category}</span>
+                <h3 className={styles.cardTitle}>{p.title}</h3>
+                <p className={styles.cardSubtitle}>{p.subtitle}</p>
+                <p className={styles.cardDesc}>{p.description}</p>
 
-              {!p.techLayers && (
-                <div className="project-tech-stack">
-                  {p.tech.map((t, j) => (
-                    <span className="tech-tag" key={j}>{t}</span>
+                <div className={styles.cardFeatures}>
+                  {p.features.map((f, j) => (
+                    <div className={styles.feature} key={j}>
+                      <span className={styles.featurePrompt}>&gt;</span>
+                      <span>{f}</span>
+                    </div>
                   ))}
                 </div>
-              )}
 
-              <div className="project-card-footer">
-                <a href={p.github} target="_blank" rel="noopener" className="project-view-btn">
+                <div className={styles.cardTechStack}>
+                  {p.techStack.map((t, j) => (
+                    <span className={styles.techTag} key={j}>{t}</span>
+                  ))}
+                </div>
+
+                <a href={p.github} target="_blank" rel="noopener" className={styles.cardViewBtn}>
                   <span>View on GitHub</span>
                   <i className="fa-solid fa-arrow-right"></i>
                 </a>
@@ -160,7 +127,7 @@ export default function Projects() {
           ))}
         </div>
 
-        <div className="projects-cta" data-aos="fade-up">
+        <div className={styles.projectsCta} data-aos="fade-up">
           <p>Want to see more of my work?</p>
           <a href="https://github.com/Adityaloharr0030" target="_blank" rel="noopener" className="btn btn-outline">
             <i className="fa-brands fa-github"></i> View GitHub Profile

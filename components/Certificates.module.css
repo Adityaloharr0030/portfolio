@@ -1,0 +1,157 @@
+.certsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 24px;
+}
+
+.certCard {
+  position: relative;
+  overflow: visible;
+  transition: transform 0.4s ease;
+  display: block;
+  text-decoration: none;
+  color: inherit;
+}
+
+.certCard:hover {
+  transform: translateY(-6px);
+}
+
+/* Animated gradient glow */
+.cardGlow {
+  position: absolute;
+  inset: -1px;
+  background: linear-gradient(135deg, rgba(0,240,255,0.08), rgba(123,47,255,0.08));
+  z-index: 0;
+  transition: all 0.4s ease;
+}
+
+.certCard:hover .cardGlow {
+  background: linear-gradient(135deg, rgba(0,240,255,0.25), rgba(123,47,255,0.25));
+  box-shadow:
+    0 0 40px rgba(0,240,255,0.1),
+    0 0 80px rgba(123,47,255,0.05);
+}
+
+.cardInner {
+  background: var(--surface-low);
+  padding: 28px;
+  position: relative;
+  z-index: 1;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  backdrop-filter: blur(12px);
+}
+
+.certCard:hover .cardInner {
+  background: var(--surface-mid);
+}
+
+.cardTop {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.cardIcon {
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0,240,255,0.06);
+  color: var(--accent);
+  font-size: 1.3rem;
+  text-shadow: 0 0 12px rgba(0,240,255,0.5);
+}
+
+.cardDate {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  color: var(--text-muted);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.cardTitle {
+  font-family: var(--font-display);
+  font-size: 0.95rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  color: var(--text-primary);
+  margin-bottom: 6px;
+  text-transform: uppercase;
+}
+
+.cardIssuer {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--accent-dim);
+  margin-bottom: 16px;
+}
+
+.credentialRow {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  margin-bottom: 16px;
+  padding: 8px 12px;
+  background: rgba(0,240,255,0.03);
+}
+
+.credentialLabel {
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  color: var(--text-muted);
+  letter-spacing: 1.5px;
+}
+
+.credentialValue {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: #ffbd2e;
+}
+
+.skillTags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 20px;
+  flex-grow: 1;
+}
+
+.verifyBtn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: var(--accent);
+  padding: 10px 0;
+  border-top: 1px solid rgba(0,240,255,0.06);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  transition: var(--trans);
+}
+
+.verifyBtn:hover {
+  text-shadow: 0 0 10px var(--accent);
+  gap: 12px;
+}
+
+.verifyBtn i:last-child {
+  margin-left: auto;
+  transition: transform 0.3s ease;
+}
+
+.verifyBtn:hover i:last-child {
+  transform: translateX(4px);
+}
+
+@media (max-width: 600px) {
+  .certsGrid {
+    grid-template-columns: 1fr;
+  }
+}

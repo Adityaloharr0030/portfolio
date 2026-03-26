@@ -1,3 +1,5 @@
+import styles from "./Marquee.module.css";
+
 const techs = [
   { icon: "fa-brands fa-js", label: "JavaScript" },
   { icon: "fa-brands fa-react", label: "React" },
@@ -25,12 +27,12 @@ function TechItem({ tech }) {
 
 export default function Marquee() {
   return (
-    <div className="marquee-section" aria-hidden="true">
-      <div className="marquee-track">
-        <div className="marquee-items">
+    <div className={styles.marqueeSection} aria-hidden="true">
+      <div className={styles.marqueeTrack}>
+        <div className={styles.marqueeItems}>
           {techs.map((t, i) => <TechItem key={i} tech={t} />)}
         </div>
-        <div className="marquee-items" aria-hidden="true">
+        <div className={styles.marqueeItems} aria-hidden="true">
           {techs.map((t, i) => <TechItem key={`dup-${i}`} tech={t} />)}
         </div>
       </div>
