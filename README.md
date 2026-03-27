@@ -1,52 +1,53 @@
-# Aditya Lohar | Full-Stack Developer Portfolio
+# Aditya Lohar | Neural Protocol Portfolio
 
-A modern, high-performance portfolio website built with **Next.js 14** (App Router). This project was migrated from a static HTML/CSS/JS site to a component-based Next.js architecture while preserving all original animations and custom styles.
+An ultra-premium, high-fidelity portfolio website built with **Next.js 16 (Turbopack)**. This system implements the "Neural Protocol" design language, a strict 8px-based stealth-tech aesthetic.
 
-## 🚀 Features
+## 📡 System Features
 
-- **Next.js 14 App Router**: Seamless navigation and optimized performance.
-- **Modern Animations**: High-quality interactions using vanilla JavaScript (particles, custom cursor, sequential terminal typing, typed text).
-- **Glassmorphism UI**: Sleek, modern design with custom CSS variables.
-- **EmailJS Integration**: Real-time serverless contact form submissions.
-- **Data-Driven Sections**: Projects and skills managed through React components for easy updates.
-- **Fully Responsive**: Optimized for mobile, tablet, and desktop screens.
+- **Neural Protocol Design System**: Custom 8px-based spacing grid with centralized design tokens.
+- **Next.js 16 Turbopack**: Blazing-fast development and optimized production builds.
+- **Cinematic Interactions**: Terminal-style boot sequences, 3D hover parallax, and shimmering border effects.
+- **Modular Architecture**: 100% componentized logic using TypeScript and scoped CSS Modules.
+- **Secure Communication**: Real-time serverless contact portal integrated with EmailJS.
 
-## 🛠️ Tech Stack
+## 🛠️ Performance Tech Stack
 
-- **Framework**: Next.js 14
-- **Styling**: Vanilla CSS (globals.css)
-- **UI Icons**: FontAwesome 6
-- **Animations**: Custom Vanilla JS + Intersection Observer (AOS style)
-- **Contact Form**: EmailJS
+- **Framework**: Next.js 16.1.7 (App Router)
+- **Styling**: Vanilla CSS Modules + Design Tokens
+- **Icons**: FontAwesome 6 (Neural Style)
+- **Deployment**: Vercel
 
-## 📧 Email Configuration (IMPORTANT)
+## 🔗 Documentation
 
-The "Get in Touch" form requires **EmailJS** credentials to deliver messages to your inbox. 
+For a detailed technical readout of what is in the system, how components are connected, and how the operational logic works, please refer to:
 
-To set it up:
-1. Open [`components/Contact.jsx`](./components/Contact.jsx).
-2. Replace the placeholders with your IDs from the [EmailJS Dashboard](https://www.emailjs.com/):
-   ```javascript
-   const EMAILJS_SERVICE_ID = "YOUR_SERVICE_ID";
-   const EMAILJS_TEMPLATE_ID = "YOUR_TEMPLATE_ID";
-   const EMAILJS_PUBLIC_KEY = "YOUR_PUBLIC_KEY";
-   ```
+👉 **[SYSTEM_STATUS.md](./SYSTEM_STATUS.md)**
 
-## 💻 Local Development
+---
+
+## 💻 Technical Setup
 
 1. **Install Dependencies**:
    ```bash
    npm install
    ```
 
-2. **Run Server**:
+2. **Secure Handsake (EmailJS)**:
+   Add your keys to `.env.local`:
+   ```env
+   NEXT_PUBLIC_EMAILJS_SERVICE_ID=your_id
+   NEXT_PUBLIC_EMAILJS_TEMPLATE_ID=your_id
+   NEXT_PUBLIC_EMAILJS_PUBLIC_KEY=your_key
+   ```
+
+3. **Initialize Dev Server**:
    ```bash
    npm run dev
    ```
 
-3. **Visit Site**:
-   Open [http://localhost:3000](http://localhost:3000)
+4. **Access Protocol**:
+   Visit [http://localhost:3000](http://localhost:3000)
 
-## 🌐 Deployment
+## 🌐 Deployment Logic
 
-The easiest way to deploy is through [Vercel](https://vercel.com/new). Simply connect your GitHub repository, and it will auto-deploy on every push.
+The system is optimized for **Vercel**. Connect your repository for automated CI/CD protocols.
